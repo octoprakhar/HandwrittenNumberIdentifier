@@ -38,3 +38,40 @@ The core logic is contained within the `HandwrittenNumberClassification` class.
 
 ```bash
 pip install tensorflow numpy
+
+## How to Run
+
+1.  **Download or clone** the notebook file.
+2.  **Open** the Jupyter Notebook: `HandwrittenNumberClassification.ipynb`.
+3.  **Run all cells.** The notebook will:
+    * Load and preprocess the MNIST data.
+    * Initialize the `HandwrittenNumberClassification` model.
+    * Train the model using a **small subset of the data** (`x_train[:100]`) for demonstration purposes, as the pure-numpy implementation is computationally intensive.
+
+**Note:** For practical applications and full dataset training, high-level libraries like TensorFlow or PyTorch are required, but this project demonstrates the **internal mechanics** of these layers.
+
+***
+
+## Model Architecture (Self-Defined Parameters)
+
+The model is configured with the following default parameters, defined in the `__init__` method:
+
+| Parameter | Value | Description |
+| :--- | :--- | :--- |
+| `batch_size` | 32 | Number of samples processed per batch. |
+| `channel_size` | 1 | Input channels (Grayscale). |
+| `kernal_size` | 4 | Convolutional kernel (filter) size (4x4). |
+| `filters` | 8 | Number of output feature maps. |
+| `stride` | 4 | Stride for the max-pooling layer. |
+| `pool_size` | 4 | Size of the max-pooling window (4x4). |
+| `lr` | 0.01 | Learning rate for weight updates. |
+
+***
+
+## Learning & Takeaways
+
+Implementing this CNN from the ground up provided invaluable insight into:
+
+* **Dimensionality Management:** Understanding the complex changes in array shapes (e.g., $(B, H, W, C)$ to $(B, F, L_H, L_W)$ to $(B, F \times \dots)$) across different layers.
+* **Gradient Flow:** Precisely how the loss is backpropagated and distributed through pooling and convolutional layers. The **binary mask** in max-pooling is critical for sparse gradient distribution.
+* **Matrix Operations:** Understanding the role of `np.sum`, broadcasting, and element-wise multiplication in calculating gradients for the weights (kernels).
