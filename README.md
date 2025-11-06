@@ -38,6 +38,7 @@ The core logic is contained within the `HandwrittenNumberClassification` class.
 
 ```bash
 pip install tensorflow numpy
+```
 
 ## How to Run
 
